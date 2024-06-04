@@ -2,7 +2,7 @@ import Types from 'prop-types';
 
 const InputText = ({id, type, label, placeholder, ...rest}) => {
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <label htmlFor={id} className="absolute bg-white px-2 -top-3 left-3">
         {label}
       </label>

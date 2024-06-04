@@ -1,21 +1,37 @@
-import SearchIcon from '../../icons/SearchIcon';
+import Types from 'prop-types';
+import {useEffect, useState} from 'react';
+import {useDebounce} from 'use-debounce';
+import InputText from '../InputText';
 
-const SearchBar = () => {
+const SearchBar = ({onSearch}) => {
+  const [search, setSearch] = useState('');
+  const [searchValue] = useDebounce(search, 2000);
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  useEffect(() => {
+    onSearch(searchValue);
+  }, [searchValue, onSearch]);
+
   return (
     <div className="flex gap-2 items-center my-2">
-      <di className="w-full">
-        <input
-          className="px-3 py-2 border w-full border-black rounded"
-          type="text"
-          placeholder="cari lowongan"
-          id="search"
-        />
-      </di>
-      <button className="bg-primary-blue p-3 rounded">
-        <SearchIcon className={'stroke-white w-[20px]'} />
-      </button>
+      <InputText
+        label={'Cari'}
+        onChange={handleChange}
+        className="px-3 py-2 border w-full border-black rounded"
+        type="text"
+        value={search}
+        placeholder="cari lowongan"
+        id="search"
+      />
     </div>
   );
+};
+
+SearchBar.propTypes = {
+  onSearch: Types.func,
 };
 
 export default SearchBar;

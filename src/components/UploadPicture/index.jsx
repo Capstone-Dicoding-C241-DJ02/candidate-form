@@ -15,7 +15,7 @@ const UploadPicture = () => {
   return (
     <div className="relative w-fit">
       <div className="relative">
-        <div className="w-[150px] h-[150px] rounded-full border-2 border-primary-blue bg-slate-500 overflow-clip">
+        <div className="w-[150px] h-[150px] rounded-full border-2 border-primary-blue bg-slate-300 overflow-clip">
           <img src={fileUrl} alt="avatar" className="object-cover mx-auto" />
           <div className="absolute -bottom-4 inset-x-[30%] bg-white w-fit p-1 rounded-full">
             <AddIcon className={'fill-primary-blue w-[50px]'} />
