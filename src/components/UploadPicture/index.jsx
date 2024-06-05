@@ -1,15 +1,17 @@
 import {useState} from 'react';
 import person from '../../assets/person.png';
 import AddIcon from '../../icons/AddIcon';
+import Types from 'prop-types';
 
-const UploadPicture = () => {
+const UploadPicture = ({onFileInput}) => {
   const [fileUrl, setFileUrl] = useState(person);
 
-  const onFileInput = (e) => {
+  const handleFileInput = (e) => {
     const file = e.target.files[0];
     const newURL = URL.createObjectURL(file);
 
     setFileUrl(newURL);
+    onFileInput('passphoto', file);
   };
 
   return (
@@ -23,13 +25,17 @@ const UploadPicture = () => {
         </div>
       </div>
       <input
-        onChange={onFileInput}
+        onChange={handleFileInput}
         type="file"
         accept=".png,.jpg, jpeg"
         className="absolute inset-0 h-full w-fit opacity-0 cursor-pointer"
       />
     </div>
   );
+};
+
+UploadPicture.propTypes = {
+  onFileInput: Types.func,
 };
 
 export default UploadPicture;

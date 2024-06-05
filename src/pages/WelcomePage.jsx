@@ -1,9 +1,7 @@
-import UploadPicture from '../components/UploadPicture';
-
 const WelcomePage = () => {
   return (
-    <div>
-      <UploadPicture />
+    <div className="grid place-content-center h-full">
+      <h1>Welcome to Dicoding Jobs</h1>
     </div>
   );
 };

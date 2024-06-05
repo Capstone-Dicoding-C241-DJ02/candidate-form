@@ -1,5 +1,5 @@
 import Types from 'prop-types';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {useDebounce} from 'use-debounce';
 import InputText from '../InputText';
 
@@ -9,11 +9,8 @@ const SearchBar = ({onSearch}) => {
 
   const handleChange = (e) => {
     setSearch(e.target.value);
-  };
-
-  useEffect(() => {
     onSearch(searchValue);
-  }, [searchValue, onSearch]);
+  };
 
   return (
     <div className="flex gap-2 items-center my-2">

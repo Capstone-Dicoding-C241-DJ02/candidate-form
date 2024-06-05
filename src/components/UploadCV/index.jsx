@@ -1,11 +1,16 @@
 import {useState} from 'react';
 import UploadIcon from '../../icons/UploadIcon';
+import Types from 'prop-types';
 
-const UploadCV = () => {
+const UploadCV = ({onFileInput}) => {
   const [filename, setFilename] = useState('');
-  const onFileInput = (e) => {
+
+  const handleFileInput = (e) => {
     const {name} = e.target.files[0];
+    const file = e.target.files[0];
+
     setFilename(name);
+    onFileInput('cv', file);
   };
 
   return (
@@ -17,13 +22,17 @@ const UploadCV = () => {
         </span>
       </div>
       <input
-        onChange={onFileInput}
+        onChange={handleFileInput}
         type="file"
         accept=".pdf"
         className="absolute h-full w-full opacity-0 top-0"
       />
     </div>
   );
+};
+
+UploadCV.propTypes = {
+  onFileInput: Types.func,
 };
 
 export default UploadCV;
