@@ -12,7 +12,7 @@ const ApplyForm = lazy(() => import('./pages/ApplyForm'));
 function App() {
   return (
     <Router>
-      <div className="flex items-center gap-5 h-screen">
+      <div className="flex items-center h-screen">
         <ToastContainer position="top-right" theme="light" />
         <div className="w-full">
           <Routes>

@@ -10,8 +10,13 @@ const SearchBar = ({onSearch}) => {
     setSearch(e.target.value);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearch(search);
+  };
+
   return (
-    <div className="flex gap-2 items-center my-2">
+    <form onSubmit={handleSubmit} className="flex gap-2 items-center my-2">
       <input
         onChange={handleChange}
         className="px-3 py-2 border w-full border-black rounded"
@@ -21,13 +26,10 @@ const SearchBar = ({onSearch}) => {
         placeholder="cari lowongan"
         id="search"
       />
-      <button
-        className="bg-primary-blue p-2 rounded"
-        onClick={() => onSearch(search)}
-      >
+      <button className="bg-primary-blue p-2 rounded">
         <SearchIcon className={'stroke-white w-[25px]'} />
       </button>
-    </div>
+    </form>
   );
 };
 

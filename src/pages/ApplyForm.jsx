@@ -56,14 +56,14 @@ const ApplyForm = () => {
       await api().post(`/candidates/apply/jobs/${id}`, formData);
       toast.success('Berhasil melamar pekerjaan', {
         hideProgressBar: true,
-        className: 'border border-success',
+        className: 'border border-success text-success',
         style: {background: 'rgb(220, 252, 231)'},
       });
       navigate('/jobs');
     } catch (error) {
       toast.error(error.response.data.message, {
         hideProgressBar: true,
-        className: 'border border-danger',
+        className: 'border border-danger text-danger',
         style: {background: 'rgb(254, 202, 202)'},
       });
     }
