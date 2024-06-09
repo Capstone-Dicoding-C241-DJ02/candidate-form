@@ -11,10 +11,10 @@ const JobHeader = ({id, logo, title, city, sector}) => {
         <img
           src={logo}
           alt="logo-company"
-          className="object-cover w-[80px] h-[80px] rounded-full"
+          className="object-cover w-[30px] md:w-[80px] md:h-[80px] rounded-full"
         />
         <div className="flex flex-col gap-2">
-          <h2 className="text-black">{title}</h2>
+          <h2 className="text-black text-lg md:text-heading">{title}</h2>
           <div className="flex flex-col">
             <span className="text-black font-medium">{city}</span>
             <span className="text-black">{sector}</span>

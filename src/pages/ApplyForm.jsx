@@ -5,7 +5,7 @@ import UploadCV from '../components/UploadCV';
 import UploadPicture from '../components/UploadPicture';
 import {useNavigate, useParams} from 'react-router-dom';
 import api from '../utils/api';
-// import Toast from '../components/Toast';
+import {toast} from 'react-toastify';
 
 const ApplyForm = () => {
   const {id} = useParams();
@@ -45,6 +45,7 @@ const ApplyForm = () => {
 
   const applyJob = async (e) => {
     e.preventDefault();
+
     const fields = Object.keys(data);
     const formData = new FormData();
     fields.forEach((field) => {
@@ -53,16 +54,23 @@ const ApplyForm = () => {
 
     try {
       await api().post(`/candidates/apply/jobs/${id}`, formData);
-      alert('Berhasil apply ke lowongan');
+      toast.success('Berhasil melamar pekerjaan', {
+        hideProgressBar: true,
+        className: 'border border-success',
+        style: {background: 'rgb(220, 252, 231)'},
+      });
       navigate('/jobs');
     } catch (error) {
-      alert(error.response.data.message);
+      toast.error(error.response.data.message, {
+        hideProgressBar: true,
+        className: 'border border-danger',
+        style: {background: 'rgb(254, 202, 202)'},
+      });
     }
   };
 
   return (
     <Card className="h-[650px] py-5 overflow-y-auto px-6 w-full bg-white">
-      {/* <Toast severity={'success'} message="Hello" /> */}
       <form
         onChange={handleChange}
         className="flex flex-col items-center space-y-10"

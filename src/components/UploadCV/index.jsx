@@ -24,7 +24,7 @@ const UploadCV = ({onFileInput}) => {
         onChange={handleFileInput}
         type="file"
         accept=".pdf"
-        className="absolute h-full w-full opacity-0 top-0"
+        className="absolute h-full w-full opacity-0 top-0 cursor-pointer"
       />
     </div>
   );

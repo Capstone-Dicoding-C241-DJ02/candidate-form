@@ -6,6 +6,9 @@ export default {
       fontFamily: {
         quicksand: 'Quicksand',
       },
+      backgroundImage: {
+        homepage: 'url(./src/assets/homepage-bg.png)',
+      },
       colors: {
         black: '#424242',
         gold: '#FAC337',

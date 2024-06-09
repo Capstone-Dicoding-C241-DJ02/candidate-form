@@ -1,6 +1,6 @@
 import Types from 'prop-types';
 import {useState} from 'react';
-import InputText from '../InputText';
+
 import SearchIcon from '../../icons/SearchIcon';
 
 const SearchBar = ({onSearch}) => {
@@ -12,11 +12,11 @@ const SearchBar = ({onSearch}) => {
 
   return (
     <div className="flex gap-2 items-center my-2">
-      <InputText
-        label={'Cari'}
+      <input
         onChange={handleChange}
         className="px-3 py-2 border w-full border-black rounded"
         type="text"
+        autoComplete="off"
         value={search}
         placeholder="cari lowongan"
         id="search"

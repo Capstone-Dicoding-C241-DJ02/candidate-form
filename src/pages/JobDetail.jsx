@@ -29,7 +29,7 @@ const JobDetail = () => {
         city={job?.city}
       />
       <Card className="h-[517px] p-10 overflow-y-auto bg-white">
-        <div className="mt-5">{parser(job?.desc ? job.desc : '')}</div>
+        <div>{parser(job?.desc ? job.desc : '')}</div>
       </Card>
     </div>
   );

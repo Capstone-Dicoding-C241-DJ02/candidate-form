@@ -23,7 +23,10 @@ const JobCard = ({id, title, logo, sector, city, isActive}) => {
             'text-black': !isActive,
           })}
         >
-          <h2 className="text-lg">{title}</h2>
+          <h2 className="text-lg text-ellipsis">{`${title.substring(
+            0,
+            25
+          )}...`}</h2>
           <div className="flex flex-col gap-2">
             <span className="font-medium text-sm">{city}</span>
             <span className="text-sm">{sector}</span>
