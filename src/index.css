@@ -34,3 +34,35 @@
     @apply text-body;
   }
 }
+
+@layer utilities {
+  .slide-in {
+    animation: slide-in forwards 1s;
+  }
+
+  .slide-in {
+    animation: slide-out forwards 1s;
+  }
+
+  @keyframes slide-in {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-out {
+    0% {
+      opacity: 0;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(100%);
+    }
+  }
+}

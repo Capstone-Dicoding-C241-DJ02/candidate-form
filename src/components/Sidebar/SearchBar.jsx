@@ -1,15 +1,13 @@
 import Types from 'prop-types';
 import {useState} from 'react';
-import {useDebounce} from 'use-debounce';
 import InputText from '../InputText';
+import SearchIcon from '../../icons/SearchIcon';
 
 const SearchBar = ({onSearch}) => {
   const [search, setSearch] = useState('');
-  const [searchValue] = useDebounce(search, 2000);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
-    onSearch(searchValue);
   };
 
   return (
@@ -23,6 +21,12 @@ const SearchBar = ({onSearch}) => {
         placeholder="cari lowongan"
         id="search"
       />
+      <button
+        className="bg-primary-blue p-2 rounded"
+        onClick={() => onSearch(search)}
+      >
+        <SearchIcon className={'stroke-white w-[25px]'} />
+      </button>
     </div>
   );
 };

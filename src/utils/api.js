@@ -6,6 +6,7 @@ const api = (params = {}) =>
   axios.create({
     params,
     baseURL: BASE_URL,
+    withCredentials: true,
   });
 
 export default api;

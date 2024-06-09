@@ -3,7 +3,9 @@ import JobCard from '../JobCard';
 import dicodingLogo from '../../assets/dicoding-logo.png';
 import SearchBar from './SearchBar';
 import api from '../../utils/api';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import Pagination from './Pagination';
+import {useParams} from 'react-router-dom';
 
 const NotFound = () => {
   return (
@@ -15,32 +17,42 @@ const NotFound = () => {
 
 const Sidebar = () => {
   const [jobs, setJobs] = useState([]);
+  const [totalData, setTotalData] = useState(0);
+  const [queryParams, setQueryParams] = useState({search: '', page: 1});
+  const {id} = useParams();
 
-  const getJobs = async (searchQuery = '') => {
-    const {data} = await api({search: searchQuery}).get('/jobs');
-    const jobsData = data.data.jobs;
+  const getJobs = async (params) => {
+    const {data} = await api(params).get('/jobs');
 
-    return jobsData;
+    return data.data;
   };
 
-  useState(() => {
-    getJobs().then((data) => setJobs(data));
-  }, []);
+  useEffect(() => {
+    getJobs(queryParams).then((data) => {
+      setJobs(data.jobs);
+      setTotalData(data.totalData);
+    });
+  }, [queryParams]);
 
   const handleSearch = async (searchText) => {
-    const data = await getJobs(searchText);
-    setJobs(data);
+    setQueryParams(() => ({page: 1, search: searchText}));
+  };
+
+  const goToNextPage = async (page) => {
+    setQueryParams((prev) => ({...prev, page}));
   };
 
   return (
-    <Card className={'p-3 w-[300px] md:w-[450px] h-[650px] overflow-clip'}>
+    <Card
+      className={'p-3 w-[300px] md:w-[450px] h-[650px] overflow-clip bg-white'}
+    >
       <div className="mb-3">
         <img src={dicodingLogo} alt="Dicoding logo" />
         <h2 className="text-lg mt-4">Daftar Lowongan</h2>
       </div>
       <SearchBar onSearch={handleSearch} />
-      <div className="overflow-y-auto max-h-[650px]">
-        <div className="space-y-3 pb-8">
+      <div className="overflow-y-auto h-[400px]">
+        <div className="space-y-10">
           {jobs.length ? (
             jobs.map((job) => (
               <JobCard
@@ -50,11 +62,13 @@ const Sidebar = () => {
                 logo={job.logo}
                 sector={job.business_sector}
                 title={job.title}
+                isActive={job.id === Number(id)}
               />
             ))
           ) : (
             <NotFound />
           )}
+          <Pagination totalData={totalData} onPageChange={goToNextPage} />
         </div>
       </div>
     </Card>

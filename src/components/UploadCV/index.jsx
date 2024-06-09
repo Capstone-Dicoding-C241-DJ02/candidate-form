@@ -8,7 +8,6 @@ const UploadCV = ({onFileInput}) => {
   const handleFileInput = (e) => {
     const {name} = e.target.files[0];
     const file = e.target.files[0];
-
     setFilename(name);
     onFileInput('cv', file);
   };
@@ -16,9 +15,9 @@ const UploadCV = ({onFileInput}) => {
   return (
     <div className="border-2 border-primary-blue rounded w-full h-[200px] relative">
       <div className="flex flex-col justify-center items-center h-full">
-        <UploadIcon className={'fill-primary-blue w-[120px]'} />
-        <span className="text-heading2 font-medium text-primary-blue">
-          {filename ? filename : 'Upload CV'}
+        <UploadIcon className={'fill-silver w-[120px]'} />
+        <span className="text-heading2 font-medium text-silver">
+          {filename ? filename : 'Upload CV dalam format pdf (maksimal 2 MB)'}
         </span>
       </div>
       <input

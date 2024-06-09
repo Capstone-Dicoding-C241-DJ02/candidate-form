@@ -11,6 +11,7 @@ const InputText = ({id, type, label, placeholder, ...rest}) => {
         type={type}
         placeholder={placeholder}
         id={id}
+        autoComplete="off"
         {...rest}
       />
     </div>

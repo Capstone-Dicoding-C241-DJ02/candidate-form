@@ -4,7 +4,9 @@ import Types from 'prop-types';
 
 const JobHeader = ({id, logo, title, city, sector}) => {
   return (
-    <Card className={'flex items-center px-5 py-2 gap-10 justify-between'}>
+    <Card
+      className={'flex items-center px-5 py-2 gap-10 justify-between bg-white'}
+    >
       <div className="flex items-center gap-5">
         <img
           src={logo}
