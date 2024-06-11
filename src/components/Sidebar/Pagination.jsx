@@ -31,13 +31,13 @@ const Pagination = ({onPageChange, totalData}) => {
     <div className="flex gap-10 md:gap-4 md:justify-start items-center justify-center">
       <div className="flex items-center gap-10 md:gap-2">
         <button
-          className="bg-white rounded shadow-primary px-4 py-2 text-black"
+          className="bg-white hover:bg-primary-blue hover:text-white rounded shadow-primary px-4 py-2 text-black"
           onClick={handleBack}
         >
           {'<'} Back
         </button>
         <button
-          className="bg-primary-blue rounded shadow-primary px-4 py-2 text-white"
+          className="bg-white hover:bg-primary-blue hover:text-white rounded shadow-primary px-4 py-2 text-black"
           onClick={handleNext}
         >
           Next {'>'}

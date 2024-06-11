@@ -2,12 +2,13 @@ import Card from '../Card';
 import {Link} from 'react-router-dom';
 import Types from 'prop-types';
 import clsx from 'clsx';
+import cutString from '../../utils/cutString';
 
 const JobCard = ({id, title, logo, sector, city, isActive}) => {
   return (
     <Link to={`/jobs/${id}`}>
       <Card
-        className={clsx('flex items-center p-2 gap-10 cursor-pointer', {
+        className={clsx('flex items-center p-2 gap-3 cursor-pointer', {
           'bg-primary-blue': isActive,
           'bg-white': !isActive,
         })}
@@ -18,18 +19,15 @@ const JobCard = ({id, title, logo, sector, city, isActive}) => {
           className="object-cover w-[60px] h-[60px] rounded-full border-2 border-primary-blue bg-white"
         />
         <div
-          className={clsx('flex flex-col gap-2', {
+          className={clsx('flex flex-col', {
             'text-white': isActive,
             'text-black': !isActive,
           })}
         >
-          <h2 className="text-lg text-ellipsis">{`${title.substring(
-            0,
-            25
-          )}...`}</h2>
-          <div className="flex flex-col gap-2">
+          <h2 className="text-lg text-ellipsis">{cutString(20, title)}</h2>
+          <div className="flex flex-col">
             <span className="font-medium text-sm">{city}</span>
-            <span className="text-sm">{sector}</span>
+            <span className="text-sm">{cutString(20, sector)}</span>
           </div>
         </div>
       </Card>
