@@ -11,6 +11,7 @@ const ApplyForm = () => {
   const {id} = useParams();
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState({
     fullname: '',
     email: '',
@@ -53,6 +54,7 @@ const ApplyForm = () => {
     });
 
     try {
+      setIsLoading(true)
       await api().post(`/candidates/apply/jobs/${id}`, formData);
       toast.success('Berhasil melamar pekerjaan', {
         hideProgressBar: true,
@@ -61,6 +63,7 @@ const ApplyForm = () => {
       });
       navigate('/jobs');
     } catch (error) {
+      setIsLoading(false)
       toast.error(error.response.data.message, {
         hideProgressBar: true,
         className: 'border border-danger text-danger',
@@ -125,7 +128,8 @@ const ApplyForm = () => {
         </div>
         <div className="self-end">
           <button
-            className="px-3 py-2 rounded bg-primary-blue text-white w-[200px]"
+            className="px-3 py-2 rounded bg-primary-blue text-white w-[200px] disabled:opacity-[0.7] disabled:cursor-not-allowed"
+            disabled={isLoading}
             onClick={applyJob}
           >
             Submit
